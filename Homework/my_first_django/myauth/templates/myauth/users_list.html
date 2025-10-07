@@ -1,0 +1,34 @@
+{% extends "myauth/base.html" %}
+
+{% block title %}
+  Users list
+{% endblock %}
+
+{% block body %}
+    <h1>Users:</h1>
+    {% if users %}
+        <div>
+            {% for user in users %}
+
+                <div>
+                    <p><a href="{% url 'myauth:user_detail' pk=user.pk %}"
+                    >Пользователь: {{ user.username |capfirst }}</a></p>
+                    <p>First name: {{ user.first_name }}</p>
+                    <div>
+                        List of user's orders:
+                        <ul>
+                            {% for order in user.profile.all %}
+                            <li>{{ order.pk }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    {% else %}
+        <h3>No users yet</h3>
+    {% endif %}
+
+{% endblock %}

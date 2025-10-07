@@ -1,0 +1,56 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$uTAeZvHreu4OmZMZxmLf8V$cBlJKwEklll1/jXzWFhJqTFr4YxzkAIC3j1REEnGpsM=",
+      "last_login": "2025-10-02T16:15:27.295Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "John",
+      "last_name": "Rootov",
+      "email": "admin@mail.ru",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-09-12T05:11:15Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$JLJCVLC0WQHeAjIIecDsMA$TwVMXoARrVpi5L5pdQ2VgpBkVkeyV6zSz4rlfFjOlT0=",
+      "last_login": "2025-10-02T16:10:32.839Z",
+      "is_superuser": false,
+      "username": "serg",
+      "first_name": "",
+      "last_name": "Rootov",
+      "email": "serg@mail.ru",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-12T15:18:24.217Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$fMYI9DyBsX0b34OOOIjGL6$DW+EJxyY+EajRM3gUYzlqqbm+AT26J9V6mh5WrpmyyA=",
+      "last_login": "2025-09-19T15:44:07.991Z",
+      "is_superuser": false,
+      "username": "den",
+      "first_name": "",
+      "last_name": "Rootov",
+      "email": "den@mail.ru",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-17T09:41:12Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

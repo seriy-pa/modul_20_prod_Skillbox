@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Base Title
+        {% endblock %}
+    </title>
+    <style>
+
+        .my-table {
+            color: blue;
+        }
+
+        .my-table td, .my-table th {
+            padding: 5px 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+{% block body %}
+
+{% endblock %}
+
+    <footer>
+        <br>
+        <table class="my-table">
+            <thead>
+                <th>Myauth:</th>
+                <th>Shopapp:</th>
+                <th>Req:</th>
+                <th>API:</th>
+                <th>Blogapp:</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="{% url 'myauth:start-myauth' %}">Myauth</a><br>
+                        <a href="{% url 'myauth:login' %}">Log In</a><br>
+                        <a href="{% url 'myauth:logout' %}">Log Out</a><br>
+                        <a href="{% url 'myauth:users_list' %}">К списку пользователей</a><br>
+                        <a href="{% url 'myauth:about-me' %}">About-me_me</a><br>
+                        <a href="{% url 'myauth:register' %}">Регистрация</a><br>
+                        <a href="/admin/">АДМИН панелька</a><br>
+                    </td>
+                    <td>
+                        <a href="/shop/">На главную</a><br>
+
+                        <a href="/shop/products/">К продуктам</a><br>
+                        <a href="/shop/orders/">К заказам</a><br>
+                        <a href="/shop/groups/">К группам</a><br>
+                        <a href="/admin/">АДМИН панелька</a><br>
+                    </td>
+                    <td>
+                        <a href="/req/">REQ</a><br>
+                        <a href="/req/get/">GET</a><br>
+                        <a href="/req/bio/">FORM</a><br>
+                        <a href="/req/upload/">UPLOAD</a><br>
+                        <a href="/admin/">АДМИН панелька</a><br>
+                    </td>
+                    <td>
+                        <a href="/api/hello/">API тестовый HELLO</a><br>
+                        <a href="/api/groups/">API групп</a><br>
+                        <a href="/shop/api/products/">API продуктов</a><br>
+                        <a href="/shop/api/orders/">API заказов</a><br>
+                        <a href="/api/schema/swagger/">API SWAGGER</a><br>
+                        <a href="/api/schema/redoc/">API REDOC</a><br>
+                    </td>
+                    <td>
+                        <a href="{% url 'blogapp:start_blogapp' %}">Blogapp</a><br>
+                        <a href="{% url 'blogapp:articles_list' %}">К статьям</a><br>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </footer>
+
+</body>
+</html>
