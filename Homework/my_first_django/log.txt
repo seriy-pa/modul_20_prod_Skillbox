@@ -1722,3 +1722,13 @@ TypeError: UserOrdersDataExportView.get() got an unexpected keyword argument 'pk
 2025-10-07 08:36:26,362 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
 2025-10-07 08:36:43,939 [WARNING] django.request: Not Found: /
 2025-10-07 08:36:49,024 [INFO] shopapp.views: Rendering shop index
+2025-10-07 16:30:00,101 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2025-10-07 16:35:43,250 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2025-10-07 16:36:13,959 [WARNING] django.request: Not Found: /favicon.ico
+2025-10-07 16:36:23,375 [WARNING] django.request: Not Found: /
+2025-10-07 16:36:39,987 [INFO] shopapp.views: Rendering shop index
+2025-10-07 16:36:46,264 [INFO] shopapp.views: Rendering shop index
+2025-10-08 11:29:16,855 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2025-10-08 11:29:37,843 [WARNING] django.request: Not Found: /
+2025-10-08 11:34:01,401 [WARNING] django.request: Not Found: /favicon.ico
+2025-10-08 11:34:12,093 [WARNING] django.request: Not Found: /favicon.ico
