@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 
 COPY my_first_django .
 
-CMD ["python", "manage.py", "runserver"]
+CMD ["gunicorn", "my_first_django.wsgi:application", "--bind", "0.0.0.0:8000"]
