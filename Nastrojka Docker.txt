@@ -19,6 +19,9 @@ python3 manage.py runserver
     --- docker compose down -v
     удаление всех контейнеров
 
+    --- docker compose exec app python manage.py migrate
+        запускаем миграцию на сервере
+
 
 --- !!!!! настройка Докера !!!!! ---
 
@@ -117,10 +120,17 @@ https://docs.docker.com/engine/install/linux-postinstall/
     --- docker compose stop app ---
     остановка приложения
 
+--- <<<!!! ДЕЛАЕМ ВСЕ ЧЕРЕЗ POETRY !!!>>> ---
 
+--- poetry init -
+    иницилизируем поетри
+    пропускаем поля отвечаем -- no, --no, --yes
 
-poetry add django django-rest-framework --- установка через поетри
-poetry add django djangorestframework
+--- poetry add django django-rest-framework --- установка через поетри
+--- poetry add django djangorestframework
+
+--- poetry install
+    когда переходим на новую машину запускаем все зависимости командой
 
 poetry add django-filter django-debug-toolbar pillow gunicorn
 --- установка пачки утилит

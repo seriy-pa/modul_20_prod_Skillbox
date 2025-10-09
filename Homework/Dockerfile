@@ -1,14 +1,15 @@
-FROM python:3.11
+FROM python:3.12
 
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app_my_first_django
 
-COPY requirements.txt requirements.txt
+RUN pip install --upgrade pip "poetry==2.2.1"
 
-RUN pip install --upgrade pip
+RUN poetry config virtualenvs.create false --local
 
-RUN pip install -r requirements.txt
+COPY pyproject.toml poetry.lock ./
+RUN poetry install
 
 COPY my_first_django .
 

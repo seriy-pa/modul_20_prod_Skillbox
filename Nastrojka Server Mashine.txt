@@ -28,7 +28,7 @@ python3 manage.py runserver
 размещаем З.К. в папку с проектом заходим в директорию с З.К. и подключаемся
 
 Пример ниже
-cd /home/seriy-pa/PycharmProjects/modul_20_prod_Skillbox/Homework/
+cd /home/seriy-pa/PycharmProjects/modul_20_prod_Skillbox/
 
 --- ssh -i 'Timeweb (3)' -p 2022 root@147.45.158.114 --- или
 --- ssh -i 'Timeweb (3)' root@147.45.158.114 -p 2022 --- или
@@ -97,6 +97,10 @@ grey --- в нашем случае "grey"
     User <your_remote_system_user_name>
     IdentityFile ~/.ssh/timeweb
 
+    запускаем серевер без ключа
+    --- ssh -p 2022 grey@147.45.158.114
+    --- ssh grey@147.45.158.114 -p 2022
+
     $ ssh <your_remote_system_user_name>@<ip_address_of_your_machine>
 
 Запускаем Midnight (mc) выбираем ПраваяПанель -> shell-соединение
@@ -145,16 +149,19 @@ home/seriy-pa/PycharmProjects/modul_20_prod_Skillbox/Homework
 https://linux.die.net/man/1/rsync
 
 
+--- <<<!!! ДЕЛАЕМ ВСЕ ЧЕРЕЗ POETRY !!!>>> ---
 
-docker compose build app --- сборка контейнера
-
-docker compose up app --- запуск контейнера
+--- poetry init -
+    иницилизируем поетри
+    пропускаем поля отвечаем -- no, --no, --yes
 
 poetry add django django-rest-framework --- установка через поетри
 poetry add django djangorestframework
 
 poetry add django-filter django-debug-toolbar pillow gunicorn
 --- установка пачки утилит
+
+poetry add "django@5.2.7" --- установка версии с указанным номером
 
 poetry add "django@5.2.7" --- установка версии с указанным номером
 
