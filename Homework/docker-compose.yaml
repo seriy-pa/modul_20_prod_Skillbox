@@ -14,14 +14,17 @@ services:
     logging:
       driver: loki
       options:
-#        loki-url: http://localhost:3100/loki/api/v1/push
-        loki-url: http://host.dockr.internal:3100/loki/api/v1/push
+        loki-url: http://localhost:3100/loki/api/v1/push
+#        отправляем логи в сервис LOKI
+#        loki-url: http://host.docker.internal:3100/loki/api/v1/push
 
   grafana:
     image: grafana/grafana:9.2.15
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
+#      заходим по ананимным пользователем
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+#      наделяем правами администратора
     ports:
       - "3000:3000"
 

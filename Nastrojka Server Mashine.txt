@@ -1,0 +1,161 @@
+python3 manage.py runserver
+
+--- source .venv/bin/activate
+запуск виртуального окружения
+
+УДАЛЕННЫЙ СЕРВЕР !!!!!!!!! --- 09.10.2025 ---
+
+---!!!   Делаем все в консоли не в пайчарме   !!!---
+
+--- ssh -V --- проверяем установку проги на компе
+
+--- ssh-keygen -t rsa -b 2048 --- создание ключа
+--- ssh-keygen -t rsa -b 2048 -C "TimeWeb Machine" --- с коментарием чтобы проще понять
+--- ssh-keygen -t rsa -b 2048 -C "TimeWeb Machine" -f timeweb --- и название файла (ключа)
+попросят ввести пароль --- можно оставить пустым можно ввести
+после чего создадутся два ключа один открытый второй закрытый
+пароль - aklposcvy
+
+Получаем данные по серверу от SKILLBOX
+1. Имя пользователя: root
+2. IP-адрес: 147.45.158.114
+3. И файлик с закрытым ключом З.К.
+4. Откройте терминал (командную строку) и установите права доступа
+к загруженному файлу приватного ключа.
+
+--- chmod 600 <путь_к_ключу>
+
+размещаем З.К. в папку с проектом заходим в директорию с З.К. и подключаемся
+
+Пример ниже
+cd /home/seriy-pa/PycharmProjects/modul_20_prod_Skillbox/Homework/
+
+--- ssh -i 'Timeweb (3)' -p 2022 root@147.45.158.114 --- или
+--- ssh -i 'Timeweb (3)' root@147.45.158.114 -p 2022 --- или
+ssh -i <путь_к_ключу> -p 2022 <имя_пользователя>@<публичный_IP>
+
+--- sudo apt update -обновление системы
+--- sudo apt upgrade
+
+--- adduser grey  (user) --- создаем нового пользователя user
+grey --- в нашем случае "grey"
+вводим пароль --- aklposcvy
+пропускаем все поля
+и подтверждаем что поля заполнены верно
+
+--- usermod -aG sudo grey ---
+даем права администратора
+
+--- su - grey ---
+переключаемся на пользователя grey
+
+проверяем работает или нет
+--- sudo echo 123
+--- вводим пароль
+
+Вводим команды по порядку под пользователем -grey-
+на сервере не на ЛОКАЛ ХОСТ
+--- cd ~
+--- mkdir -p .ssh
+--- chmod 700 .ssh
+ echo " <вводим наш ключ который создали timeweb> " >> ~/.ssh/authorized_keys
+
+ выходим
+ пробуем зайти под -grey-
+--- ssh -i timeweb grey@147.45.158.114 -p 2022
+--- ssh -i timeweb -p 2022 grey@147.45.158.114
+ЗАШЛИ
+
+--- sudo apt install mc
+устанавливаем Midnight
+--- ms
+запускаем MC
+
+--- touch <name.py> - создание файла <name.py>
+--- mkdir <name> - создание дериктории <name>
+--- cat <name.py> - просмотр файла <name.py>
+
+Довольно неудобно каждый раз добавлять путь к ключу при подключении к серверу.
+Да и указывать его в rsync тоже немного неприятно.
+
+    На локальной машине создайте папку ~/.ssh и задайте на неё права:
+    --- mkdir -p ~/.ssh
+    --- chmod 700 ~/.ssh
+
+    Создайте в папке ~/.ssh файл с именем config:
+    --- touch ~/.ssh/config && chmod 600 ~/.ssh/config
+
+    Скопируйте приватный и публичный ключи в папку ~/.ssh/:
+    находясь в дериктории где находятся ключи выполним команду:
+    --- cp -fv timeweb timeweb.pub ~/.ssh/
+    --- chmod 600 ~/.ssh/timeweb*
+
+    Отредактируйте файл ~/.ssh/config, написав следующие строки:
+    --- nano ~/.ssh/config
+
+    Host <ip_address_of_your_machine>
+    User <your_remote_system_user_name>
+    IdentityFile ~/.ssh/timeweb
+
+    $ ssh <your_remote_system_user_name>@<ip_address_of_your_machine>
+
+Запускаем Midnight (mc) выбираем ПраваяПанель -> shell-соединение
+---- grey@147.45.158.114:2022
+    все теперь спокойно работаем>
+    переносил на виртуалку папки и работаем
+
+--- !!! Терминальная команда !!! ---
+
+--- scp -i timeweb -r <дериктория на компе> grey@147.45.158.114:2022 <дериктория на серваке>
+
+<дериктория на компе>
+<дериктория на серваке> как пример без < -- > и в адресе откуда и куда
+без первого и последнего слеша /---/
+home/seriy-pa/PycharmProjects/modul_20_prod_Skillbox/Homework
+
+--- !!! Можно и через терминал при помощи утилиты RSYNC !!! ---
+
+Устанавливаем утилиту
+--- sudo apt install rsync
+
+Шпаргалка по rsync для копирования файлов на удаленный сервер
+
+    Синхронизация каталогов dir1 и dir2 на одной машине:
+    rsync -a dir1 dir2
+
+    Синхронизация удалённой системы:
+    rsync -a local_dir username@remote_host:remote_dir
+
+    В обратную сторону:
+    rsync -a username@remote_host:remote_dir local_dir
+
+    Использование с ключом:
+    rsync -e 'ssh -i timeweb' -Paz username@remote_host:remote_dir local_dir
+
+Опции:
+
+-v — в-версивное увеличение многословия
+−r — рекурсивная синхронизация.
+−a — режим архива, эквивалент -rlptgoD.
+−z — сжатие данных.
+−P — показать прогресс синхронизации.
+−e — используется для задания параметров при подключении через SSH.
+
+Полный список опций можно найти в документации.
+https://linux.die.net/man/1/rsync
+
+
+
+docker compose build app --- сборка контейнера
+
+docker compose up app --- запуск контейнера
+
+poetry add django django-rest-framework --- установка через поетри
+poetry add django djangorestframework
+
+poetry add django-filter django-debug-toolbar pillow gunicorn
+--- установка пачки утилит
+
+poetry add "django@5.2.7" --- установка версии с указанным номером
+
+

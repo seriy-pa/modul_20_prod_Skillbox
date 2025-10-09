@@ -48,8 +48,8 @@ class AboutMeView(UpdateView):
     success_url = reverse_lazy("myauth:about-me")
 
     def get_object(self, queryset = None):
-        print(f" текущий пользователь {self.request.user.profile.pk}\n {self.request.user}")
-        print(f"object {Profile.objects}")
+        # print(f" текущий пользователь {self.request.user.profile.pk}\n {self.request.user}")
+        # print(f"object {Profile.objects}")
         return  self.request.user.profile
 
 

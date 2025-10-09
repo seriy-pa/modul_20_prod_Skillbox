@@ -1,0 +1,128 @@
+python3 manage.py runserver
+
+--- docker ps -a - вывод всех контейнеров
+--- docker ps
+--- docker images
+--- docker compose stop
+
+Для одновременной остановки и удаления контейнера можно использовать флаг -f (force):
+    --- docker rm -f <container_id>
+    --- docker rm -vf $(docker ps -a -q)
+
+Для удаления образа используйте команду docker rmi (remove image):
+    --- docker rmi <image_id>
+    --- docker rmi $(docker images)
+
+    --- docker compose rm -s -v app
+    остановка и удаление указанного контейнера
+
+    --- docker compose down -v
+    удаление всех контейнеров
+
+
+--- !!!!! настройка Докера !!!!! ---
+
+https://docs.docker.com/engine/install/ubuntu/
+https://docs.docker.com/engine/install/linux-postinstall/
+Все команды по настройке и установке Докера берем с офиц сайта
+
+Все данные берутся из ADVANSE  на --- 09.10.2025 ---
+
+Удалить старые версии
+Запустите следующую команду для удаления всех противоречивых пакетов:
+    --- for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
+- 1.Настройте Docker's apt Хранилище.
+    копируем вставляем в терминал и запускаем
+
+    # Add Docker's official GPG key:
+    sudo apt-get update
+    sudo apt-get install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    # Add the repository to Apt sources:
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+
+- 2. Установите пакеты Docker.
+    --- sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    Проверяем статус установки
+    ---  sudo systemctl status docker
+
+    Некоторые системы могут иметь такое поведение отключено и потребуют ручного старта:
+    --- sudo systemctl start docker
+
+- 3. Убедитесь, что установка успешна, запустив hello-worldИзображение:
+    --- sudo docker run hello-world
+
+--- <<< !!! После установки докера !!!>>> ---
+
+Для того, чтобы создать docker Группируйте и добавляйте пользователя:
+
+    Создать docker группа.
+    --- sudo groupadd docker
+
+    Добавьте своего пользователя в docker группа.
+    --- sudo usermod -aG docker $USER
+
+    Выйдите и войдите обратно, чтобы ваше членство в группе было переоценено.
+
+
+
+--- <<< !!! Это идет из ДЖАНОГО мод.17.4 !!! >>> ---
+
+Простая сборка контейнера в корневой папке
+    --- cd ~
+    --- docker build . -t app
+        сборка контейнера с именем app
+    --- docker run -it app bash
+        запуск контейнера по имени (в нашем случае app и оболочкой bash)
+
+Добавили файл docker-compose.yaml и запуск стал другим
+    --- docker compose build app
+    сборка контейнера с именем app
+
+    --- docker compose up app
+    запуск контейнера по имени (в нашем случае app)
+
+    --- docker compose up --build app
+    сборка и запуск одновременно
+
+    --- docker compose up -d app
+    запуск контейнера без деталей с работающим терминалом
+
+    --- docker compose logs app
+    просмотр логов приложения
+
+--- <<< !!! ОТСЛЕЖИВАЕМ ЛОГИ В ДОКЕРЕ ЕСЛИ НЕТУ ДОСТУПА К ТЕРМИНАЛУ !!! >>> ---
+
+Используем доб услугу GRAFANA
+
+вносим изменения в docker-compose.yaml добавляем GRAFANA и LOKI
+    --- docker compose pull
+    загружаем к нам на комп образы LOKI и GRAFANA
+
+    --- docker compose up -d grafana loki
+    запускаем сервисы без блокировки терминала
+
+    --- docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
+    устанавливаем плагин для сбора логов через GRAFANA LOKI
+
+    --- docker compose stop app ---
+    остановка приложения
+
+
+
+poetry add django django-rest-framework --- установка через поетри
+poetry add django djangorestframework
+
+poetry add django-filter django-debug-toolbar pillow gunicorn
+--- установка пачки утилит
+
+poetry add "django@5.2.7" --- установка версии с указанным номером
